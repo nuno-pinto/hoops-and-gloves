@@ -48,7 +48,7 @@ public abstract class FallingObject extends GameObject {
 
     public void setGarbage() {
         isGarbage = true;
-        delete();
+        //delete();
     }
 
     public boolean isGarbage() {

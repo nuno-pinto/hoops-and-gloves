@@ -7,18 +7,23 @@ import Player.Controls;
 import Player.Player;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Game {
 
     private Court court;
     private Player player;
     private HUD hud;
-    private ArrayList<FallingObject> fallingObjects = new ArrayList<>();
+    private List<FallingObject> fallingObjects;
 
     public Game() {
 
         court = new Court();
         court.draw();
+
+        fallingObjects = Collections.synchronizedList(new ArrayList<>());
 
         player = new Player(court);
         hud = new HUD(player);
@@ -59,7 +64,6 @@ public class Game {
 
             updateMovement();
 
-
         }
     }
 
@@ -93,6 +97,7 @@ public class Game {
         for (FallingObject obj : fallingObjects) {
             if (obj.isGarbage()) {
                 fallingObjects.remove(obj);
+                obj.delete();
                 return;
             }
         }

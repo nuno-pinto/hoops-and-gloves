@@ -7,6 +7,7 @@ import GameObjects.FallingObjects.FallingObject;
 import GameObjects.FallingObjects.Trash;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public final class FallingObjectFactory {
 
@@ -14,7 +15,7 @@ public final class FallingObjectFactory {
     private static int createDelay = 35;
     private static int objectCounter = 1;
 
-    public static void createFallingObject(Court court, ArrayList<FallingObject> fallingObjects) {
+    public static void createFallingObject(Court court, List<FallingObject> fallingObjects) {
 
         if (createCounter < createDelay) {
             createCounter++;

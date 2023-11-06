@@ -6,26 +6,29 @@ import GameObjects.PlayerObjects.PlayerObject;
 import Player.Player;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CollisionDetector {
+public abstract class CollisionDetector {
 
-    public static void checkCollisions(Player player, ArrayList<FallingObject> fallingObjects) {
+    public static void checkCollisions(Player player, List<FallingObject> fallingObjects) {
 
         runObjectCheck(player.getHoop(), FallingObjectType.BASKETBALL, fallingObjects, player);
         runObjectCheck(player.getGlove(), FallingObjectType.BASEBALL, fallingObjects, player);
 
     }
 
-    private static void runObjectCheck(PlayerObject playerObject, FallingObjectType correctObjectType, ArrayList<FallingObject> fallingObjects, Player player) {
+    private static void runObjectCheck(PlayerObject playerObject, FallingObjectType correctObjectType, List<FallingObject> fallingObjects, Player player) {
         for (FallingObject fallingObject : fallingObjects) {
             if (isColliding(playerObject, fallingObject)) {
                 if (fallingObject.getObjectType() == correctObjectType) {
 
                     player.addScore(50);
+                    player.getHud().appearNice();
 
                 } else {
 
                     player.reduceLives();
+                    player.getHud().appearYikes();
 
                 }
 

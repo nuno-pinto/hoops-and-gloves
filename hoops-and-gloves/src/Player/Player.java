@@ -59,6 +59,10 @@ public class Player {
         this.hud = hud;
     }
 
+    public HUD getHud() {
+        return this.hud;
+    }
+
     public Hoop getHoop() {
         return hoop;
     }
