@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Game {
 
     private Court court;
-    private Player player;
+    private volatile Player player;
     private HUD hud;
     private List<FallingObject> fallingObjects;
 
@@ -24,6 +25,7 @@ public class Game {
         court.draw();
 
         fallingObjects = Collections.synchronizedList(new ArrayList<>());
+        //fallingObjects = new CopyOnWriteArrayList<>();
 
         player = new Player(court);
         hud = new HUD(player);
